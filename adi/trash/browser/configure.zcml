@@ -1,0 +1,16 @@
+<configure
+ xmlns="http://namespaces.zope.org/zope"
+ xmlns:five="http://namespaces.zope.org/five"
+ xmlns:browser="http://namespaces.zope.org/browser"
+ i18n_domain="adi.trash">
+
+    <include package="plone.app.contentmenu" />
+
+    <browser:page
+        for="*"
+        name="adi_trash_view"
+        class=".browser.Trash"
+        permission="zope2.DeleteObjects"
+        />
+
+</configure>
