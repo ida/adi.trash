@@ -6,7 +6,7 @@ version = '0.1'
 setup(name='adi.trash',
       version=version,
       description="Plone addon, changing deletion-behaviour: Moves items into a trash-folder, instead of deleting them.",
-      long_description=open("README.txt").read(),
+      long_description=open("README.rst").read(),
       classifiers=[
         "Framework :: Plone",
         "Programming Language :: Python",
