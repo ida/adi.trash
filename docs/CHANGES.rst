@@ -2,7 +2,7 @@ Changelog for adi.trash
 =======================
  
 
-0.3 (unreleased)
+0.3 (2017-07-27)
 ----------------
 
 - Regard URL can contain parameters, fixes #3. [idgserpro]
