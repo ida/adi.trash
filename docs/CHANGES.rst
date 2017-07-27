@@ -4,8 +4,9 @@ Changelog for adi.trash
 
 0.3 (unreleased)
 ----------------
+- Regard URL can contain parameters, fixes #3.. [ida]
 
-- Nothing changed yet.
+- Add plone.api as a dependency. [idgserpro]
 
 
 0.2 (2017-04-12)

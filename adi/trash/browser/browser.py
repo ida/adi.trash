@@ -1,13 +1,9 @@
 from plone import api
-
+from urlparse import urlparse
 from zope.i18nmessageid import MessageFactory
-
 from Products.statusmessages.interfaces import IStatusMessage
-
 from Products.Five.browser import BrowserView
-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
 
 _ = MessageFactory('plone')
 
@@ -25,34 +21,35 @@ class Trash(BrowserView):
 
     def __call__(self):
         trash_id = 'trash'
-        self.addTrash(trash_id) 
+        self.addTrash(trash_id)
         landing_url = self.request.get_header('referer')
         status = IStatusMessage(self.request)
 
         # We're coming from a folder_contents' delete-button:
-        if landing_url.endswith('/folder_contents'):
-                    
+        if urlparse(landing_url).endswith('/folder_contents'):
+
             if self.paths:
-                    
+
                 for path in self.paths:
-                    
+
                     obj = api.content.get(path)
-                    
+
                     if self.isTrash(obj, trash_id):
-                        api.content.delete(obj=obj) #, check_linkintegrity=True)
-                    
+                        api.content.delete(obj=obj) # check_linkintegrity=True)
+
                     else:
                         api.content.move(obj, self.navroot.trash)
 
                 status.add(_(u'Item(s) deleted.'), type=u'info')
-                    
+
             else:
-                status.add(_(u'Please select one or more items to delete.'), type=u'info')
+                status.add(_(u'Please select one or more items to delete.'),
+                           type=u'info')
 
         # We're coming from an item's delete-button:
         else:
             if self.isTrash(self.context, trash_id):
-                api.content.delete(obj=self.context) #, check_linkintegrity=True)
+                api.content.delete(obj=self.context) # check_linkintegrity=True)
             else:
                 api.content.move(self.context, self.navroot.trash)
             status.add(_(u'Item(s) deleted.'), type=u'info')
