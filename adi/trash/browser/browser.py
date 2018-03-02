@@ -26,7 +26,7 @@ class Trash(BrowserView):
         status = IStatusMessage(self.request)
 
         # We're coming from a folder_contents' delete-button:
-        if urlparse(landing_url).endswith('/folder_contents'):
+        if urlparse(landing_url).path.endswith('/folder_contents'):
 
             if self.paths:
 
