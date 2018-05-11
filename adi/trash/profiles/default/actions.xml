@@ -15,7 +15,7 @@
         </object>
         <object name="trash" meta_type="CMF Action" i18n:domain="plone" insert-before="delete">
             <property name="title" i18n:translate="">Delete</property>
-            <property name="url_expr">string:@@adi_trash_view</property>
+            <property name="url_expr">string:$object_url/@@adi_trash_view</property>
             <property
                 name="available_expr">python:checkPermission("Delete objects", globals_view.getParentObject()) and not globals_view.isPortalOrPortalDefaultPage()</property>
             <property name="permissions">
