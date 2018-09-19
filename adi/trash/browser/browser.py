@@ -56,12 +56,7 @@ class Trash(BrowserView):
             if self.isTrash(self.context, trash_id):
                 api.content.delete(obj=self.context) # check_linkintegrity=True)
             else:
-                self.doAsTmpUserWithRole(
-                    'Contributor',
-                    api.content.move,
-                    source=self.context,
-                    target=self.navroot.trash,
-                )
+                self.trashItem(self.context, self.navroot.trashcan)
             status.add(_(u'Item(s) deleted.'), type=u'info')
 
             # We want to land on old parent:
@@ -124,4 +119,14 @@ class Trash(BrowserView):
         or obj.id == trash_id:
             TRASH = True
         return TRASH
+
+    def trashItem(item, trashcan):
+        """Set item-state to private and move item to trashcan with a
+        temporary user holding the Contributor-role."""
+        self.doAsTmpUserWithRole(
+            role='Contributor',
+            function=api.content.move,
+            source=item,
+            target=trashcan,
+        )
 
