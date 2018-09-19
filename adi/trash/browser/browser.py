@@ -1,6 +1,12 @@
 from plone import api
 from urlparse import urlparse
 from zope.i18nmessageid import MessageFactory
+
+from AccessControl import getSecurityManager
+from AccessControl.SecurityManagement import newSecurityManager
+from AccessControl.SecurityManagement import setSecurityManager
+from AccessControl.User import UnrestrictedUser
+
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -36,7 +42,6 @@ class Trash(BrowserView):
 
                     if self.isTrash(obj, trash_id):
                         api.content.delete(obj=obj) # check_linkintegrity=True)
-
                     else:
                         api.content.move(obj, self.navroot.trash)
 
@@ -51,7 +56,12 @@ class Trash(BrowserView):
             if self.isTrash(self.context, trash_id):
                 api.content.delete(obj=self.context) # check_linkintegrity=True)
             else:
-                api.content.move(self.context, self.navroot.trash)
+                self.doAsTmpUserWithRole(
+                    'Contributor',
+                    api.content.move,
+                    source=self.context,
+                    target=self.navroot.trash,
+                )
             status.add(_(u'Item(s) deleted.'), type=u'info')
 
             # We want to land on old parent:
@@ -66,11 +76,38 @@ class Trash(BrowserView):
         # Do we have a trashcan?
         if trash_id not in self.navroot.objectIds():
             # No, create it:
-            trash = self.navroot.invokeFactory('Folder', trash_id)
+            self.doAsTmpUserWithRole(
+                'Contributor',
+                api.content.create,
+                container=self.navroot,
+                type='Folder',
+                id=trash_id,
+            )
             # Set trash-title:
             self.navroot.trash.setTitle('Trash')
             # Update title in navroot_catalog:
             self.navroot.trash.reindexObject()
+
+    def doAsTmpUserWithRole(self, role, function, *args, **kwargs):
+        """Create a temporary user with role and execute function.
+        Credits: Copied from add-on 'Products.EasyNewsletter'."""
+        sm = getSecurityManager()
+        portal = api.portal.get()
+        try:
+            try:
+                tmp_user = UnrestrictedUser(
+                sm.getUser().getId(), '', [role], '')
+
+                tmp_user = tmp_user.__of__(portal.acl_users)
+                newSecurityManager(None, tmp_user)
+
+                return function(*args, **kwargs)
+
+        except:
+            raise
+        finally:
+            setSecurityManager(sm)
+
 
     def isTrash(self, obj, trash_id):
         """
