@@ -56,7 +56,7 @@ class Trash(BrowserView):
             if self.isTrash(self.context, trash_id):
                 api.content.delete(obj=self.context) # check_linkintegrity=True)
             else:
-                self.trashItem(self.context, self.navroot.trashcan)
+                self.trashItem(self.context, self.navroot.trash)
             status.add(_(u'Item(s) deleted.'), type=u'info')
 
             # We want to land on old parent:
