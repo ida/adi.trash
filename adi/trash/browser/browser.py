@@ -43,7 +43,7 @@ class Trash(BrowserView):
                     if self.isTrash(obj, trash_id):
                         api.content.delete(obj=obj) # check_linkintegrity=True)
                     else:
-                        api.content.move(obj, self.navroot.trash)
+                        self.trashItem(self.context, self.navroot.trash)
 
                 status.add(_(u'Item(s) deleted.'), type=u'info')
 
@@ -120,7 +120,7 @@ class Trash(BrowserView):
             TRASH = True
         return TRASH
 
-    def trashItem(item, trashcan):
+    def trashItem(self, item, trashcan):
         """Set item-state to private and move item to trashcan with a
         temporary user holding the Contributor-role."""
         self.doAsTmpUserWithRole(
