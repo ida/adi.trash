@@ -103,8 +103,8 @@ class Trash(BrowserView):
 
                 return function(*args, **kwargs)
 
-        except:
-            raise
+            except:
+                raise
         finally:
             setSecurityManager(sm)
 
