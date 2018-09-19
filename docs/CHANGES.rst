@@ -2,6 +2,12 @@ Changelog for adi.trash
 =======================
  
 
+0.5 (unreleased)
+----------------
+
+- Nothing changed yet.
+
+
 0.4 (unreleased)
 ----------------
 
