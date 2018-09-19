@@ -11,6 +11,8 @@ setup(name='adi.trash',
                        open('docs/CHANGES.rst'),
       classifiers=[
         "Framework :: Plone",
+        "Framework :: Plone :: 4.3",
+        "Framework :: Plone :: 5.2",
         "Programming Language :: Python",
         ],
       keywords='',
