@@ -12,7 +12,7 @@ setup(name='adi.trash',
       classifiers=[
         "Framework :: Plone",
         "Framework :: Plone :: 4.3",
-        "Framework :: Plone :: 5.2",
+        "Framework :: Plone :: 5.1",
         "Programming Language :: Python",
         ],
       keywords='',
