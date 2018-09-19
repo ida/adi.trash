@@ -8,7 +8,7 @@ Changelog for adi.trash
 - Nothing changed yet.
 
 
-0.4 (unreleased)
+0.4 (2018-03-03)
 ----------------
 
 - 'ParseResult' object has no attribute 'endswith', fix error.  [amariscal]
