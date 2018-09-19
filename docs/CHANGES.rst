@@ -5,7 +5,8 @@ Changelog for adi.trash
 0.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Give temporary Contributor-role to user, for pasting into
+  trashcan and creating trashcans. Fix #7. [ida]
 
 
 0.4 (2018-03-03)
