@@ -123,6 +123,7 @@ class Trash(BrowserView):
     def trashItem(self, item, trashcan):
         """Set item-state to private and move item to trashcan with a
         temporary user holding the Contributor-role."""
+        api.content.transition(item, to_state='private')
         self.doAsTmpUserWithRole(
             role='Contributor',
             function=api.content.move,
