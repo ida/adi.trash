@@ -2,7 +2,7 @@ Changelog for adi.trash
 =======================
  
 
-0.5 (unreleased)
+0.5 (2018-09-27)
 ----------------
 
 - Set trashed items' workflow-state to 'private' after trashing,
