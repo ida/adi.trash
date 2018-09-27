@@ -5,8 +5,15 @@ Changelog for adi.trash
 0.5 (unreleased)
 ----------------
 
+- Set trashed items' workflow-state to 'private' after trashing,
+  so trashed content does not get unintentionally exposed. [ida]
+
+
 - Give temporary Contributor-role to user, for pasting into
   trashcan and creating trashcans. Fix #7. [ida]
+
+- Include CHANGES in long-description of this egg, so it gets
+  displayed on pypi. [ida]
 
 
 0.4 (2018-03-03)
