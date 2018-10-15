@@ -4,6 +4,7 @@ Changelog for adi.trash
 
 0.6 (unreleased)
 ----------------
+- Fix bug on deletion from folder-contents (thanks to laulaz for reporting). [ida]
 
 - Nothing changed yet.
 

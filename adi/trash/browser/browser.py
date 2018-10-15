@@ -43,7 +43,7 @@ class Trash(BrowserView):
                     if self.isTrash(obj, trash_id):
                         api.content.delete(obj=obj) # check_linkintegrity=True)
                     else:
-                        self.trashItem(self.context, self.navroot.trash)
+                        self.trashItem(obj, self.navroot.trash)
 
                 status.add(_(u'Item(s) deleted.'), type=u'info')
 
