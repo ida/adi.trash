@@ -2,7 +2,7 @@ Changelog for adi.trash
 =======================
  
 
-0.6 (unreleased)
+0.6 (2018-10-15)
 ----------------
 
 - Fix bug on deletion from folder-contents (thanks to 'laulaz' for reporting).
